@@ -59,7 +59,8 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "scraper.pipelines.AdScraperPipeline": 300,
+   # "scraper.pipelines.AdSpiderPipeline": 300,
+    "scraper.pipelines.AmsterdamSpiderPipeline": 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

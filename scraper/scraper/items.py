@@ -25,7 +25,7 @@ class AdItem(scrapy.Item):
     pet_friendly = scrapy.Field()
     income_requirement = scrapy.Field()
     students = scrapy.Field()
-    # senior_home = scrapy.Field()
+    senior_home = scrapy.Field()
     description = scrapy.Field()
     photo = scrapy.Field()
     realtor = scrapy.Field()
