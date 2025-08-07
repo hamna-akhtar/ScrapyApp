@@ -12,15 +12,6 @@ class AmsterdamSpider(scrapy.Spider):
 
     def start_requests(self):
         # for main page with all ads
-        cookies = {
-            'osVisitor': '56904ff6-819f-4159-be2c-48157b9017f8',
-            'CookieScriptConsent': '{"action":"reject","consenttime":1721123375,"categories":"[]"}',
-            'nr1Users': 'lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dR6xQp6rNWPVAnyO7ESEh1iZLFx4%3d',
-            'nr2Users': 'crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d',
-            'Melding_146': 'Melding_146',
-            'osVisit': '39b4bd41-d9a2-4865-bbaf-239347898219',
-        }
-
         headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
             'Accept': 'application/json',
@@ -1030,22 +1021,11 @@ class AmsterdamSpider(scrapy.Spider):
         api_url = 'https://amsterdam.mijndak.nl/screenservices/DAKWP/Overzicht/Woningaanbod/DataActionHaalUitgelogdAanbod'
         yield scrapy.Request(
             url=api_url,
-            cookies=cookies,
             method='POST',
             headers=headers,
             body=json.dumps(payload),
             callback=self.parse
         )
-
-        # for website name
-        name_cookies = {
-            'osVisitor': '56904ff6-819f-4159-be2c-48157b9017f8',
-            'CookieScriptConsent': '{"action":"reject","consenttime":1721123375,"categories":"[]"}',
-            'nr1Users': 'lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dR6xQp6rNWPVAnyO7ESEh1iZLFx4%3d',
-            'nr2Users': 'crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d',
-            'Melding_146': 'Melding_146',
-            'osVisit': 'e90c6f5b-4396-483e-ab98-a23dd437c7e8',
-        }
 
         name_headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
@@ -1133,7 +1113,6 @@ class AmsterdamSpider(scrapy.Spider):
         name_api_url = 'https://amsterdam.mijndak.nl/screenservices/DAKWP/Common/ApplicationTitle/ScreenDataSetGetSamenwerkingsverbandsByWebsiteURL'
         yield scrapy.Request(
             url=name_api_url,
-            cookies=name_cookies,
             method='POST',
             headers=name_headers,
             body=json.dumps(name_payload),
@@ -1152,18 +1131,6 @@ class AmsterdamSpider(scrapy.Spider):
         for item in publications:
             publication_id = item["Adres"]["PublicatieId"]
             photo = item["Foto_Locatie"]
-
-            # for publication
-            cookies = {
-                'osVisitor': '56904ff6-819f-4159-be2c-48157b9017f8',
-                'CookieScriptConsent': '{"action":"reject","consenttime":1721123375,"categories":"[]"}',
-                'nr1Users': 'lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dR6xQp6rNWPVAnyO7ESEh1iZLFx4%3d',
-                'nr2Users': 'crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d',
-                'Melding_146': 'Melding_146',
-                'osVisit': '58637275-2e67-4322-acb2-8bb3a35bcffa',
-                '_ga_EWDTJFP5PK': 'GS2.1.s1754368290$o1$g0$t1754368290$j60$l0$h0',
-                '_ga': 'GA1.1.874057218.1754368291',
-            }
 
             headers = {
                 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
@@ -1517,7 +1484,6 @@ class AmsterdamSpider(scrapy.Spider):
             api_url = 'https://amsterdam.mijndak.nl/screenservices/DAKWP/HuisDetails/HuisDetails/ScreenDataSetGetPublicatie'
             yield scrapy.Request(
                 url=api_url,
-                cookies=cookies,
                 method='POST',
                 headers=headers,
                 body=json.dumps(payload),
@@ -1547,18 +1513,6 @@ class AmsterdamSpider(scrapy.Spider):
         adItem["senior_home"] = unit["Doelgroep"] == 'Senioren' or cluster["Doelgroep"] == "Senioren"
         adItem["scraped_at"] = datetime.datetime.now().replace(microsecond=0)
 
-        # for more details
-        detail_cookies = {
-            'osVisitor': '56904ff6-819f-4159-be2c-48157b9017f8',
-            'CookieScriptConsent': '{"action":"reject","consenttime":1721123375,"categories":"[]"}',
-            'nr1Users': 'lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dR6xQp6rNWPVAnyO7ESEh1iZLFx4%3d',
-            'nr2Users': 'crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d',
-            'Melding_146': 'Melding_146',
-            'osVisit': '58637275-2e67-4322-acb2-8bb3a35bcffa',
-            '_ga_EWDTJFP5PK': 'GS2.1.s1754377750$o1$g0$t1754377750$j60$l0$h0',
-            '_ga': 'GA1.1.1013750742.1754377751',
-        }
-
         detail_headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0',
             'Accept': 'application/json',
@@ -1571,12 +1525,9 @@ class AmsterdamSpider(scrapy.Spider):
             'Origin': 'https://amsterdam.mijndak.nl',
             'Connection': 'keep-alive',
             'Referer': f'https://amsterdam.mijndak.nl/HuisDetails?PublicatieId={publication_id}',
-            # 'Cookie': 'osVisitor=56904ff6-819f-4159-be2c-48157b9017f8; CookieScriptConsent={"action":"reject","consenttime":1721123375,"categories":"[]"}; nr1Users=lid%3dAnonymous%3btuu%3d0%3bexp%3d0%3brhs%3dXBC1ss1nOgYW1SmqUjSxLucVOAg%3d%3bhmc%3dR6xQp6rNWPVAnyO7ESEh1iZLFx4%3d; nr2Users=crf%3dT6C%2b9iB49TLra4jEsMeSckDMNhQ%3d%3buid%3d0%3bunm%3d; Melding_146=Melding_146; osVisit=58637275-2e67-4322-acb2-8bb3a35bcffa; _ga_EWDTJFP5PK=GS2.1.s1754377750$o1$g0$t1754377750$j60$l0$h0; _ga=GA1.1.1013750742.1754377751',
             'Sec-Fetch-Dest': 'empty',
             'Sec-Fetch-Mode': 'cors',
             'Sec-Fetch-Site': 'same-origin',
-            # Requests doesn't support trailers
-            # 'TE': 'trailers',
         }
 
         detail_payload = {
@@ -2050,7 +2001,6 @@ class AmsterdamSpider(scrapy.Spider):
         detail_api_url = 'https://amsterdam.mijndak.nl/screenservices/DAKWP/HuisDetails/HuisDetails_WB/DataActionGetPublicatieDetails'
         yield scrapy.Request(
             url=detail_api_url,
-            cookies=detail_cookies,
             method='POST',
             headers=detail_headers,
             body=json.dumps(detail_payload),
