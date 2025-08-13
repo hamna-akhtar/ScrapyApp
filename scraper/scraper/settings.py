@@ -14,6 +14,12 @@ NEWSPIDER_MODULE = "scraper.spiders"
 
 ADDONS = {}
 
+DOWNLOAD_HANDLERS = {
+    "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+    "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
+}
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "scraper (+http://www.yourdomain.com)"
@@ -28,6 +34,7 @@ DOWNLOAD_DELAY = 1
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
+# COOKIES_DEBUG = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -59,7 +66,8 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "scraper.pipelines.AdScraperPipeline": 300,
+   # "scraper.pipelines.AdSpiderPipeline": 300,
+    "scraper.pipelines.AmsterdamSpiderPipeline": 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
